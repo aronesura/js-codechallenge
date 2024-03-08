@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006 -s public",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -s public",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
@@ -63,6 +63,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@storybook/addon-actions": "^7.6.4",
     "@storybook/addon-essentials": "^7.6.4",
     "@storybook/addon-interactions": "^7.6.4",
@@ -71,7 +74,7 @@
     "@storybook/preset-create-react-app": "^7.6.4",
     "@storybook/react": "^7.6.4",
     "@storybook/react-webpack5": "^7.6.4",
-    "@storybook/testing-library": "^0.2.2",
+    "@storybook/test": "^7.6.17",
     "prettier": "^3.2.5",
     "storybook": "^7.6.4",
     "webpack": "^5.71.0"

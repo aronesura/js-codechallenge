@@ -1,3 +1,4 @@
+import React from 'react';
 import CurrencyData from 'currency-codes/data';
 import Select from 'react-select';
 

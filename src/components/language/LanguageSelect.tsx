@@ -1,3 +1,4 @@
+import React from 'react';
 import ISO_6391_Languages from 'iso-639-1';
 
 import Select from 'react-select';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { OptionProps, components } from 'react-select';
 
 /* --- [TASK] ---
