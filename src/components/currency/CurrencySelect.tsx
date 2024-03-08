@@ -1,5 +1,5 @@
-import CurrencyData from "currency-codes/data";
-import Select from "react-select";
+import CurrencyData from 'currency-codes/data';
+import Select from 'react-select';
 
 // Props
 interface CurrencySelectProps {
@@ -8,7 +8,7 @@ interface CurrencySelectProps {
 }
 
 // Constants
-export const DEFAULT_CURRENCY = "USD - US Dollar";
+export const DEFAULT_CURRENCY = 'USD - US Dollar';
 
 // Component
 const CurrencySelect = ({
@@ -18,8 +18,8 @@ const CurrencySelect = ({
   // Prepare data
   const data = CurrencyData.map(({ code, currency }) => {
     return {
-      value: code + " - " + currency,
-      label: code + " - " + currency,
+      value: code + ' - ' + currency,
+      label: code + ' - ' + currency,
     };
   });
   const defaultValue = { value: value, label: value };
@@ -33,7 +33,7 @@ const CurrencySelect = ({
           options={data}
           defaultValue={defaultValue}
           onChange={(newValue) => {
-            onChange(newValue.value);
+            onChange?.(newValue?.value || '');
           }}
         />
       </label>

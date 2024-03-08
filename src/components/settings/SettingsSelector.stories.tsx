@@ -1,13 +1,13 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from '@storybook/react';
 
-import SettingsSelector from "./SettingsSelector";
+import SettingsSelector from './SettingsSelector';
 
 // Settings
 export default {
-  title: "Modal/SettingsSelector",
+  title: 'Modal/SettingsSelector',
   component: SettingsSelector,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } as Meta;
 

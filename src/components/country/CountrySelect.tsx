@@ -1,23 +1,24 @@
-import countries from "i18n-iso-countries";
-import Select from "react-select";
-import { CountrySelectOption } from "./CountrySelectOption";
+import countries from 'i18n-iso-countries';
+import Select from 'react-select';
+import { CountrySelectOption } from './CountrySelectOption';
+import { ICountry } from 'types/country.types';
 
 // Register countries
-countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 
 // --- TASK G ---
 // Please replace "any" with a proper type in this file (and where it is needed).
 
 // Props
 interface CountrySelectProps {
-  value?: any;
-  onChange?: (value: any) => void;
+  value?: ICountry;
+  onChange?: (value: ICountry) => void;
 }
 
 // Constants
-export const DEFAULT_COUNTRY = {
-  code: "US",
-  name: "United States of America",
+export const DEFAULT_COUNTRY: ICountry = {
+  code: 'US',
+  name: 'United States of America',
 };
 
 // Component
@@ -27,7 +28,7 @@ export const CountrySelect = ({
 }: CountrySelectProps) => {
   // Prepare Data
   const data = Object.entries(
-    countries.getNames("en", { select: "official" })
+    countries.getNames('en', { select: 'official' })
   ).map(([code, name]) => {
     return {
       value: { code, name },
@@ -46,7 +47,7 @@ export const CountrySelect = ({
           components={{ Option: CountrySelectOption }}
           defaultValue={defaultValue}
           onChange={(newValue) => {
-            onChange(newValue.value);
+            onChange?.((newValue as { value: ICountry; label: string })?.value);
           }}
         />
       </label>

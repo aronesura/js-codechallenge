@@ -1,13 +1,13 @@
-import { Meta, StoryFn } from "@storybook/react";
-import CurrencySelect from "./CurrencySelect";
+import { Meta, StoryFn } from '@storybook/react';
+import CurrencySelect from './CurrencySelect';
 
 // Settings
 export default {
-  title: "Input/CurrencySelect",
+  title: 'Input/CurrencySelect',
   component: CurrencySelect,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: "centered",
+    layout: 'centered',
   },
 } as Meta;
 

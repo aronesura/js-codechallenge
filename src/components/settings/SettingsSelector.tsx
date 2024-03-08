@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
-import Modal from "react-modal";
-import CountrySelect, { DEFAULT_COUNTRY } from "../country/CountrySelect";
-import LanguageSelect, { DEFAULT_LANGUAGE } from "../language/LanguageSelect";
-import CurrencySelect, { DEFAULT_CURRENCY } from "../currency/CurrencySelect";
+import React, { useRef } from 'react';
+import Modal from 'react-modal';
+import CountrySelect, { DEFAULT_COUNTRY } from '../country/CountrySelect';
+import LanguageSelect, { DEFAULT_LANGUAGE } from '../language/LanguageSelect';
+import CurrencySelect, { DEFAULT_CURRENCY } from '../currency/CurrencySelect';
+import { ICountry } from 'types/country.types';
 
 /* --- [TASK] ---
 Changes on modal are only applied on SAVE
@@ -96,10 +97,13 @@ FURTHER DETAILS
 // Component
 const SettingsSelector = (): JSX.Element => {
   // States
-  const [modalIsOpen, setModalIsOpen] = React.useState<any>(false);
-  const [selectedCountry, setCountry] = React.useState<any>(DEFAULT_COUNTRY);
-  const [selectedCurrency, setCurrency] = React.useState<any>(DEFAULT_CURRENCY);
-  const [selectedLanguage, setLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
+  const [selectedCountry, setCountry] =
+    React.useState<ICountry>(DEFAULT_COUNTRY);
+  const [selectedCurrency, setCurrency] =
+    React.useState<string>(DEFAULT_CURRENCY);
+  const [selectedLanguage, setLanguage] =
+    React.useState<string>(DEFAULT_LANGUAGE);
 
   // Render Counter
   const counter = useRef(0);
@@ -117,7 +121,7 @@ const SettingsSelector = (): JSX.Element => {
     counter.current++;
 
     // Log current render count.
-    console.log("Render count of button is: " + counter.current);
+    console.log('Render count of button is: ' + counter.current);
 
     /* Button */
     return (

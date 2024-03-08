@@ -1,35 +1,35 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add --dev @types/currency-codes
+  /home/cahaya/.nvm/versions/node/v20.11.1/bin/node /usr/share/yarn/bin/yarn.js add -D @types/currency-codes
 
 PATH: 
-  C:\Python311\Scripts\;C:\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Users\first\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Go\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\first\AppData\Local\pnpm;C:\Users\first\AppData\Local\Microsoft\WindowsApps;C:\Users\first\AppData\Roaming\Composer\vendor\bin;C:\Users\first\AppData\Local\Yarn\bin;C:\Users\first\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\first\.deno\bin;C:\Users\first\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\first\go\bin;C:\Users\first\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\BrowserStackLocal\
+  /opt/WebStorm-231.9011.35/bin:/opt/pycharm-2023.1.2/bin:/home/cahaya/.nvm/versions/node/v20.11.1/bin:/home/cahaya/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  20.10.0
+  20.11.1
 
 Platform: 
-  win32 x64
+  linux x64
 
 Trace: 
   Error: https://registry.yarnpkg.com/@types%2fcurrency-codes: Not found
-      at params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66145:18)
-      at self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140890:22)
-      at Request.emit (node:events:514:28)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141862:10)
-      at Request.emit (node:events:514:28)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141784:12)
-      at Object.onceWrapper (node:events:628:28)
-      at IncomingMessage.emit (node:events:526:35)
-      at endReadableNT (node:internal/streams/readable:1589:12)
+      at params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66145:18)
+      at self.callback (/usr/share/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:518:28)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:518:28)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:632:28)
+      at IncomingMessage.emit (node:events:530:35)
+      at endReadableNT (node:internal/streams/readable:1696:12)
       at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {
     "name": "storybook-app",
-    "version": "0.1.1",
+    "version": "0.1.0",
     "private": true,
     "engines": {
       "node": ">=20"

@@ -1,13 +1,13 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from '@storybook/react';
 
-import LanguageSelect from "./LanguageSelect";
+import LanguageSelect from './LanguageSelect';
 
 // Settings
 export default {
-  title: "Input/LanguageSelect",
+  title: 'Input/LanguageSelect',
   component: LanguageSelect,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
 } as Meta;
 

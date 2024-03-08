@@ -16,8 +16,13 @@
     "noUnusedLocals": false,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": ["node", "jest", "webpack-env"],
+    "typeRoots": ["./types"],
+    "strictNullChecks": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

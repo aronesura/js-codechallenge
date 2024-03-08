@@ -1,4 +1,4 @@
-import { OptionProps, components } from "react-select";
+import { OptionProps, components } from 'react-select';
 
 /* --- [TASK] ---
 Country flags in select field

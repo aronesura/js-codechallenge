@@ -1,7 +1,7 @@
-import SettingsSelector from "./components/settings/SettingsSelector";
-import Modal from "react-modal";
+import SettingsSelector from './components/settings/SettingsSelector';
+import Modal from 'react-modal';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 function App() {
   return <SettingsSelector />;
