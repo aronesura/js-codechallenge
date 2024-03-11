@@ -1,7 +1,7 @@
 import React from 'react';
 import countries from 'i18n-iso-countries';
 import Select from 'react-select';
-import { CountrySelectOption } from './CountrySelectOption';
+import { CountrySelectOption, CountrySelectInput } from './CountrySelectOption';
 import { ICountry } from 'types/country.types';
 
 // Register countries
@@ -31,7 +31,7 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
   onChange,
 }) => {
   // Prepare Data
-  const data = Object.entries(
+  const data: { value: ICountry; label: string }[] = Object.entries(
     countries.getNames('en', { select: 'official' })
   ).map(([code, name]) => {
     return {
@@ -48,13 +48,25 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
         Country
         <Select
           options={data}
-          components={{ Option: CountrySelectOption }}
+          components={{
+            Option: CountrySelectOption,
+            SingleValue: CountrySelectInput,
+          }}
           defaultValue={defaultValue}
           onChange={(newValue) => {
             onChange?.(
               'country',
               (newValue as { value: ICountry; label: string })?.value
             );
+          }}
+          styles={{
+            input: (styles) => ({
+              ...styles,
+              position: 'absolute',
+              inset: 0,
+              margin: 0,
+              padding: 0,
+            }),
           }}
         />
       </label>

@@ -5,7 +5,7 @@ import CountrySelect, { DEFAULT_COUNTRY } from '../country/CountrySelect';
 import LanguageSelect, { DEFAULT_LANGUAGE } from '../language/LanguageSelect';
 import CurrencySelect, { DEFAULT_CURRENCY } from '../currency/CurrencySelect';
 import { ICountry } from 'types/country.types';
-import useResponsive from '../../hooks/useResponsive';
+import useResponsive from 'hooks/useResponsive';
 
 /* --- [TASK] ---
 Changes on modal are only applied on SAVE

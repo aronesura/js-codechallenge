@@ -1,5 +1,6 @@
 import React from 'react';
-import { OptionProps, components } from 'react-select';
+import { OptionProps, SingleValueProps, components } from 'react-select';
+import { Stack, Typography } from '@mui/material';
 
 /* --- [TASK] ---
 Country flags in select field
@@ -21,10 +22,39 @@ FURTHER DETAILS
 --- [TASK] --- */
 
 // Component
+const { Option, SingleValue } = components;
+
 export const CountrySelectOption = (props: OptionProps<any>) => {
   return (
     <div>
-      <components.Option {...props} />
+      <Option {...props}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <img
+            src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${props.data.value.code}.svg`}
+            style={{ width: 30 }}
+            alt={props.data.value.code}
+          />
+          <Typography>{props.data.label}</Typography>
+        </Stack>
+      </Option>
+    </div>
+  );
+};
+
+export const CountrySelectInput = (props: SingleValueProps<any>) => {
+  const data = props.getValue()[0];
+  return (
+    <div>
+      <SingleValue {...props}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <img
+            src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${data.value.code}.svg`}
+            style={{ width: 30 }}
+            alt={data.value.code}
+          />
+          <Typography>{data.label}</Typography>
+        </Stack>
+      </SingleValue>
     </div>
   );
 };
