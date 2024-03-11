@@ -102,9 +102,13 @@ export interface SettingsSelectorProps {}
 const SettingsSelector: React.FC<SettingsSelectorProps> = () => {
   // States
   const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
-  const [buttonTitle, setButtonTitle] = useState<string>(
-    `${DEFAULT_COUNTRY.name} - (${DEFAULT_CURRENCY} - ${DEFAULT_LANGUAGE})`
-  );
+  const [buttonTitle, setButtonTitle] = useState<{
+    flag: string;
+    title: string;
+  }>({
+    flag: DEFAULT_COUNTRY.code,
+    title: `${DEFAULT_COUNTRY.name} - (${DEFAULT_CURRENCY} - ${DEFAULT_LANGUAGE})`,
+  });
   const [selected, setSelected] = useState<{
     country: ICountry;
     currency: string;
@@ -135,9 +139,10 @@ const SettingsSelector: React.FC<SettingsSelectorProps> = () => {
   };
   const handleSave = () => {
     setModalIsOpen(false);
-    setButtonTitle(
-      `${selected.country.name} - (${selected.currency} - ${selected.language})`
-    );
+    setButtonTitle({
+      flag: selected.country.code,
+      title: `${selected.country.name} - (${selected.currency} - ${selected.language})`,
+    });
   };
 
   const renderButton = useMemo(() => {
@@ -149,13 +154,20 @@ const SettingsSelector: React.FC<SettingsSelectorProps> = () => {
 
     /* Button */
     return (
-      <Typography
-        textAlign="center"
+      <Stack
         onClick={handleOpen}
-        sx={{ cursor: 'pointer' }}
+        direction="row"
+        alignItems="center"
+        spacing={1}
+        sx={{ cursor: 'pointer', marginLeft: 'auto', marginRight: 'auto' }}
       >
-        {buttonTitle}
-      </Typography>
+        <img
+          src={`https://catamphetamine.gitlab.io/country-flag-icons/3x2/${buttonTitle.flag}.svg`}
+          style={{ width: 30 }}
+          alt={buttonTitle.flag}
+        />
+        <Typography>{buttonTitle.title}</Typography>
+      </Stack>
     );
   }, [buttonTitle]);
 
