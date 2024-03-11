@@ -4,19 +4,22 @@ import ISO_6391_Languages from 'iso-639-1';
 import Select from 'react-select';
 
 // Props
-interface LanguageSelectProps {
+export interface LanguageSelectProps {
   language?: string;
-  onChange?: (language: string) => void;
+  onChange?: (
+    field: 'country' | 'currency' | 'language',
+    language: string
+  ) => void;
 }
 
 // Constants
 export const DEFAULT_LANGUAGE = 'English - English';
 
 // Component
-const LanguageSelect = ({
+const LanguageSelect: React.FC<LanguageSelectProps> = ({
   language = DEFAULT_LANGUAGE,
   onChange,
-}: LanguageSelectProps) => {
+}) => {
   // Prepare data
   const data = ISO_6391_Languages.getLanguages([
     'en',
@@ -42,7 +45,7 @@ const LanguageSelect = ({
           options={data}
           defaultValue={defaultValue}
           onChange={(newValue) => {
-            onChange?.(newValue?.value || '');
+            onChange?.('language', newValue?.value || '');
           }}
         />
       </label>

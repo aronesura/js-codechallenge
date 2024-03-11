@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import Modal from 'react-modal';
+import { Button, Stack, Typography } from '@mui/material';
 import CountrySelect, { DEFAULT_COUNTRY } from '../country/CountrySelect';
 import LanguageSelect, { DEFAULT_LANGUAGE } from '../language/LanguageSelect';
 import CurrencySelect, { DEFAULT_CURRENCY } from '../currency/CurrencySelect';
 import { ICountry } from 'types/country.types';
+import useResponsive from '../../hooks/useResponsive';
 
 /* --- [TASK] ---
 Changes on modal are only applied on SAVE
@@ -88,22 +90,38 @@ CURRENT SCENARIO
 
 DESIRED SCENARIO
 - The error log does not appear
-- The cause of the the warning is fixed
+- The cause of the warning is fixed
 
 FURTHER DETAILS
 - Downgrading to React 17 is not an option 😉
 --- [TASK] --- */
 
 // Component
-const SettingsSelector = (): JSX.Element => {
+export interface SettingsSelectorProps {}
+
+const SettingsSelector: React.FC<SettingsSelectorProps> = () => {
   // States
   const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
-  const [selectedCountry, setCountry] =
-    React.useState<ICountry>(DEFAULT_COUNTRY);
-  const [selectedCurrency, setCurrency] =
-    React.useState<string>(DEFAULT_CURRENCY);
-  const [selectedLanguage, setLanguage] =
-    React.useState<string>(DEFAULT_LANGUAGE);
+  const [buttonTitle, setButtonTitle] = useState<string>(
+    `${DEFAULT_COUNTRY.name} - (${DEFAULT_CURRENCY} - ${DEFAULT_LANGUAGE})`
+  );
+  const [selected, setSelected] = useState<{
+    country: ICountry;
+    currency: string;
+    language: string;
+  }>({
+    country: DEFAULT_COUNTRY,
+    currency: DEFAULT_CURRENCY,
+    language: DEFAULT_LANGUAGE,
+  });
+  const downMD = useResponsive('down', 'md');
+
+  const handleChangeField = (
+    field: 'country' | 'currency' | 'language',
+    value: ICountry | string
+  ) => {
+    setSelected((prevState) => ({ ...prevState, [field]: value }));
+  };
 
   // Render Counter
   const counter = useRef(0);
@@ -115,8 +133,14 @@ const SettingsSelector = (): JSX.Element => {
   const handleClose = () => {
     setModalIsOpen(false);
   };
+  const handleSave = () => {
+    setModalIsOpen(false);
+    setButtonTitle(
+      `${selected.country.name} - (${selected.currency} - ${selected.language})`
+    );
+  };
 
-  const button = () => {
+  const renderButton = useMemo(() => {
     // Increase render count.
     counter.current++;
 
@@ -125,35 +149,85 @@ const SettingsSelector = (): JSX.Element => {
 
     /* Button */
     return (
-      <button onClick={handleOpen}>
-        {selectedCountry.name} - ({selectedCurrency} - {selectedLanguage})
-      </button>
+      <Typography
+        textAlign="center"
+        onClick={handleOpen}
+        sx={{ cursor: 'pointer' }}
+      >
+        {buttonTitle}
+      </Typography>
     );
-  };
+  }, [buttonTitle]);
 
   // Render
   return (
-    <div>
-      {button()}
+    <Stack sx={{ pt: 3 }}>
+      {renderButton}
 
       {/* Modal */}
-      <Modal isOpen={modalIsOpen}>
-        {/* Header */}
-        <h2>Select your region, currency and language.</h2>
+      <Modal
+        isOpen={modalIsOpen}
+        style={{
+          overlay: {
+            position: 'fixed',
+            zIndex: 999,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(0, 0, 0, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          content: {
+            width: downMD ? '90%' : '600px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            overflowY: 'auto',
+            inset: 'initial',
+          },
+        }}
+      >
+        <Stack spacing={2}>
+          {/* Header */}
+          <Typography component="h2">
+            Select your region, currency and language.
+          </Typography>
 
-        {/* Country */}
-        <CountrySelect value={selectedCountry} onChange={setCountry} />
+          {/* Country */}
+          <CountrySelect
+            value={selected.country}
+            onChange={handleChangeField}
+          />
 
-        {/* Currency */}
-        <CurrencySelect value={selectedCurrency} onChange={setCurrency} />
+          {/* Currency */}
+          <CurrencySelect
+            value={selected.currency}
+            onChange={handleChangeField}
+          />
 
-        {/* Language */}
-        <LanguageSelect language={selectedLanguage} onChange={setLanguage} />
+          {/* Language */}
+          <LanguageSelect
+            language={selected.language}
+            onChange={handleChangeField}
+          />
 
-        {/* Close button */}
-        <button onClick={handleClose}>Close</button>
+          <Stack alignItems="flex-end">
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={handleClose}
+              >
+                Close
+              </Button>
+              <Button variant="contained" onClick={handleSave}>
+                Save
+              </Button>
+            </Stack>
+          </Stack>
+        </Stack>
       </Modal>
-    </div>
+    </Stack>
   );
 };
 

@@ -11,9 +11,12 @@ countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 // Please replace "any" with a proper type in this file (and where it is needed).
 
 // Props
-interface CountrySelectProps {
+export interface CountrySelectProps {
   value?: ICountry;
-  onChange?: (value: ICountry) => void;
+  onChange?: (
+    field: 'country' | 'currency' | 'language',
+    value: ICountry
+  ) => void;
 }
 
 // Constants
@@ -23,10 +26,10 @@ export const DEFAULT_COUNTRY: ICountry = {
 };
 
 // Component
-export const CountrySelect = ({
+export const CountrySelect: React.FC<CountrySelectProps> = ({
   value = DEFAULT_COUNTRY,
   onChange,
-}: CountrySelectProps) => {
+}) => {
   // Prepare Data
   const data = Object.entries(
     countries.getNames('en', { select: 'official' })
@@ -48,7 +51,10 @@ export const CountrySelect = ({
           components={{ Option: CountrySelectOption }}
           defaultValue={defaultValue}
           onChange={(newValue) => {
-            onChange?.((newValue as { value: ICountry; label: string })?.value);
+            onChange?.(
+              'country',
+              (newValue as { value: ICountry; label: string })?.value
+            );
           }}
         />
       </label>

@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 
-import SettingsSelector from './SettingsSelector';
+import SettingsSelector, { SettingsSelectorProps } from './SettingsSelector';
 
 // Settings
 export default {
@@ -12,7 +12,9 @@ export default {
 } as Meta;
 
 // Main Story
-const Template: StoryFn<any> = (args) => <SettingsSelector {...args} />;
+const Template: StoryFn<SettingsSelectorProps> = (args) => (
+  <SettingsSelector {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {};
