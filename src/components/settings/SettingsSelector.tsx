@@ -230,7 +230,7 @@ const SettingsSelector: React.FC<SettingsSelectorProps> = () => {
                 variant="contained"
                 onClick={handleClose}
               >
-                Close
+                Cancel
               </Button>
               <Button variant="contained" onClick={handleSave}>
                 Save
